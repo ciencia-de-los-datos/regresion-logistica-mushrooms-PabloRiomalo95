@@ -119,26 +119,27 @@ def pregunta_03():
     Ya que las variables explicativas son literales, resulta más conveniente usar un
     pipeline.
     """
-
     # Importe LogisticRegressionCV
-    # Importe OneHotEncoder
+    from sklearn.linear_model import LogisticRegression
     # Importe Pipeline
-    from ____ import ____
-
+    from sklearn.pipeline import Pipeline
+    # Importe OneHotEncoder
+    from sklearn.preprocessing import OneHotEncoder
+    
     # Cargue las variables.
-    X_train, _, y_train, _ = pregunta_02()
-
+    X_train, X_test, y_train, y_test = pregunta_02()
+    
     # Cree un pipeline que contenga un estimador OneHotEncoder y un estimador
     # LogisticRegression con una regularización Cs=10
     pipeline = Pipeline(
         steps=[
-            ("____", ____()),
-            ("____", ____(____)),
+            ("onehotencoder",OneHotEncoder(handle_unknown='ignore')),
+            ("logistic", LogisticRegression(C=10)),
         ],
     )
-
+    
     # Entrene el pipeline con los datos de entrenamiento.
-    ____.____(____, ____)
+    pipeline.fit(X_train, y_train)
 
     # Retorne el pipeline entrenado
     return pipeline
